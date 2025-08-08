@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>คำร้องขอโอนย้ายสาขาวิชา</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+        * {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-blue-100 via-white to-blue-100 min-h-screen p-6 flex items-center justify-center">
+    <form id="transferForm" action="mjuend.html"
+        class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-2xl space-y-6 border border-gray-300">
+
+        <!-- โลโก้และหัวฟอร์ม -->
+        <div class="text-center">
+            <img src="img/mjulogo.jpg"
+                alt="ตรามหาวิทยาลัยแม่โจ้" class="mx-auto w-24 h-24 mb-2" />
+            <h1 class="text-2xl font-extrabold text-green-800 mt-2">คำร้องขอโอนย้ายสาขาวิชา</h1>
+        </div>
+
+        <!-- วันที่เขียน -->
+        <div>
+            <label class="block font-semibold text-gray-700 mb-1">วันที่เขียนคำร้อง *</label>
+            <input type="date" id="writtenDate" name="writtenDate"
+                class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+            <span id="writtenDateError" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- ข้อมูลนักศึกษา -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">คำนำหน้า *</label>
+                <select id="prefix" name="prefix"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400">
+                    <option value="">-- เลือก --</option>
+                    <option>นาย</option>
+                    <option>นางสาว</option>
+                    <option>นาง</option>
+                </select>
+                <span id="prefixError" class="text-red-600 text-sm"></span>
+            </div>
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">ชื่อ-นามสกุล *</label>
+                <input type="text" id="fullName" name="fullName" placeholder="ชื่อ นามสกุล"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+                <span id="fullNameError" class="text-red-600 text-sm"></span>
+            </div>
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">รหัสนักศึกษา *</label>
+                <input type="text" id="studentId" name="studentId" maxlength="8" placeholder="8 หลัก"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+                <span id="studentIdError" class="text-red-600 text-sm"></span>
+            </div>
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">เบอร์โทรศัพท์ *</label>
+                <input type="tel" id="phone" name="phone" placeholder="เช่น 0812345678"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+                <span id="phoneError" class="text-red-600 text-sm"></span>
+            </div>
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">ระบบการเรียน *</label>
+                <select id="studyType" name="studyType"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400">
+                    <option value="">-- เลือก --</option>
+                    <option>ภาคปกติ</option>
+                    <option>ภาคสมทบ</option>
+                </select>
+                <span id="studyTypeError" class="text-red-600 text-sm"></span>
+            </div>
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">หลักสูตร *</label>
+                <select id="programType" name="programType"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400">
+                    <option value="">-- เลือก --</option>
+                    <option>4 ปี</option>
+                    <option>เทียบเข้าเรียน (2 ปี)</option>
+                </select>
+                <span id="programTypeError" class="text-red-600 text-sm"></span>
+            </div>
+        </div>
+
+        <!-- รายละเอียดการโอนย้าย -->
+        <hr class="my-6 border-gray-300" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">คณะเดิม *</label>
+                <input type="text" id="oldFaculty" name="oldFaculty"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+                <span id="oldFacultyError" class="text-red-600 text-sm"></span>
+            </div>
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">สาขาเดิม *</label>
+                <input type="text" id="oldMajor" name="oldMajor"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+                <span id="oldMajorError" class="text-red-600 text-sm"></span>
+            </div>
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">คณะใหม่ *</label>
+                <input type="text" id="newFaculty" name="newFaculty"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+                <span id="newFacultyError" class="text-red-600 text-sm"></span>
+            </div>
+            <div>
+                <label class="block font-semibold text-gray-700 mb-1">สาขาใหม่ *</label>
+                <input type="text" id="newMajor" name="newMajor"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+                <span id="newMajorError" class="text-red-600 text-sm"></span>
+            </div>
+        </div>
+
+        <div>
+            <label class="block font-semibold text-gray-700 mb-1">เหตุผลในการขอโอนย้าย *</label>
+            <textarea id="reason" name="reason" rows="3" placeholder="กรุณากรอกอย่างน้อย 10 ตัวอักษร"
+                class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400"></textarea>
+            <span id="reasonError" class="text-red-600 text-sm"></span>
+        </div>
+
+        <div>
+            <label class="block font-semibold text-gray-700 mb-1">Email *</label>
+            <input type="email" id="email" name="email" placeholder="กรอกอีเมล"
+                class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+            <span id="emailError" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- เอกสารแนบ (ขึ้นมาไว้ตรงนี้) -->
+        <div>
+            <label class="block font-semibold text-gray-700 mb-1">แนบใบรายงานผลการศึกษา (PDF) *</label>
+            <input type="file" id="transcriptFile" name="transcriptFile" accept="application/pdf"
+                class="w-full border border-gray-300 p-2 rounded-lg cursor-pointer focus:ring-2 focus:ring-blue-400" />
+            <span id="transcriptFileError" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- ข้อความคุณสมบัติ (ย้ายไปท้ายสุด) -->
+        <div
+            class="bg-gradient-to-r from-blue-100 via-white to-blue-100 border border-blue-400 rounded-xl p-6 text-blue-900 text-base font-semibold leading-relaxed shadow-md">
+            <p>ทั้งนี้ ข้าพเจ้ามีคุณสมบัติครบถ้วนในการขอย้ายสาขาวิชา ดังนี้ คือ</p>
+            <p class="mt-3 font-semibold">หลักสูตร 4 เทียบเข้าเรียน (2 ปี)</p>
+            <ul class="list-disc pl-6 mb-3">
+                <li>ได้ศึกษาตามแผนการศึกษาในสาขาวิชาเดิมมาแล้วไม่น้อยกว่า 1 ภาคการศึกษาปกติ</li>
+                <li>มีหน่วยกิตสะสมไม่น้อยกว่า 18 หน่วยกิต และมีแต้มระดับคะแนนเฉลี่ยสะสมไม่น้อยกว่า 2.00</li>
+            </ul>
+            <p class="font-semibold">หลักสูตร 4 ปี</p>
+            <ul class="list-disc pl-6 mb-3">
+                <li>ได้ศึกษาตามแผนการศึกษาในสาขาวิชาเดิมมาแล้วไม่น้อยกว่า 2 ภาคการศึกษาปกติ</li>
+                <li>มีหน่วยกิตสะสมไม่น้อยกว่า 30 หน่วยกิต และมีแต้มระดับคะแนนเฉลี่ยสะสมไม่น้อยกว่า 2.00</li>
+            </ul>
+
+        </div>
+
+        <!-- ข้อความหมายเหตุ -->
+        <div
+            class="bg-gradient-to-l from-yellow-50 via-yellow-100 to-yellow-50 border border-yellow-400 rounded-xl p-6 text-yellow-900 text-sm leading-relaxed shadow-inner mt-8">
+            <h3 class="font-bold text-lg mb-2">หมายเหตุ</h3>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>การโอนย้ายสาขาวิชาทั้งภายในคณะ และต่างคณะ จะกระทำได้เพียงครั้งเดียว</li>
+                <li>การยื่นคำร้องขอโอนย้ายสาขาวิชาทั้งภายในคณะ และต่างคณะ ที่ได้นับอนุมัติแล้ว
+                    จะต้องยื่นที่กลุ่มภารกิจทะเบียนเรียนประมวลผล
+                    และรับเข้า สำนักบริหารและพัฒนาวิชาการ ก่อนเริ่มเปิดภาคเรียนปกติที่ขอโอนย้ายไม่น้อยกว่า 4 สัปดาห์
+                </li>
+                <li>นักศึกษาที่ขอโอนย้ายสาขาวิชาต่างคณะ จะต้องมีระยะเวลาศึกษาอยู่ในสาขาวิชาที่โอนย้ายเข้า
+                    ก่อนจบการศึกษาและมีสิทธิ์ขอรับปริญญา ดังนี้
+                    <br /><strong>หลักสูตร 4 ปี เทียบเข้าเรียน (2ปี)</strong>
+                    จะต้องมีระยะเวลาศึกษาอยู่ในสาขาวิชาที่โอนย้ายเข้า ไม่น้อยกว่า 2 ภาคการศึกษาปกติ
+                    <br /><strong>หลักสูตร 4 ปี</strong> จะต้องมีระยะเวลาศึกษาอยู่ในสาขาวิชาที่โอนย้ายเข้า ไม่น้อยกว่า 4
+                    ภาคการศึกษาปกติ
+                </li>
+            </ul>
+        </div>
+
+        <!-- ปุ่ม submit -->
+        <div class="text-center mt-10">
+            <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-lg transition duration-300">
+                ส่งคำร้อง
+            </button>
+        </div>
+    </form>
+
+    <script>
+        const form = document.getElementById("transferForm");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let valid = true;
+
+            function isValidPhone(phone) {
+                return /^0\d{9}$/.test(phone);
+            }
+
+            function isValidStudentId(id) {
+                return /^\d{8}$/.test(id);
+            }
+
+            function isValidEmail(email) {
+                // basic email pattern
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            const fields = [
+                "writtenDate", "prefix", "fullName", "studentId", "phone", "studyType", "programType",
+                "oldFaculty", "oldMajor", "newFaculty", "newMajor", "reason", "transcriptFile", "email"
+            ];
+
+            fields.forEach(id => {
+                const el = document.getElementById(id);
+                const errorEl = document.getElementById(id + "Error");
+                errorEl.textContent = "";
+
+                if (id === "writtenDate") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่วันที่";
+                        valid = false;
+                    }
+                } else if (id === "prefix") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่คำนำหน้า";
+                        valid = false;
+                    }
+                } else if (id === "fullName") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่ชื่อนาม-สกุล";
+                        valid = false;
+                    }
+                } else if (id === "studentId") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่รหัสนักศึกษา";
+                        valid = false;
+                    } else if (!isValidStudentId(el.value.trim())) {
+                        errorEl.textContent = "กรุณากรอกรหัสนักศึกษา 8 หลักตัวเลขเท่านั้น";
+                        valid = false;
+                    }
+                } else if (id === "phone") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่เบอร์โทรติดต่อ";
+                        valid = false;
+                    } else if (!isValidPhone(el.value.trim())) {
+                        errorEl.textContent = "กรุณากรอกเบอร์โทรศัพท์ 10 หลัก เริ่มต้นด้วย 0";
+                        valid = false;
+                    }
+                } else if (id === "studyType") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "เลือกภาคการเรียน";
+                        valid = false;
+                    }
+                } else if (id === "programType") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "เลือกหลักสูตร";
+                        valid = false;
+                    }
+                } else if (id === "oldFaculty") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่ชื่อคณะ";
+                        valid = false;
+                    }
+                } else if (id === "oldMajor") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่ชื่อสาขา";
+                        valid = false;
+                    }
+                } else if (id === "newFaculty") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่ชื่อคณะ";
+                        valid = false;
+                    }
+                } else if (id === "newMajor") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่ชื่อสาขา";
+                        valid = false;
+                    }
+                } else if (id === "reason") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่เหตุผลในการขอโอนย้าย";
+                        valid = false;
+                    } else if (el.value.trim().length < 10) {
+                        errorEl.textContent = "กรุณากรอกเหตุผลอย่างน้อย 10 ตัวอักษร";
+                        valid = false;
+                    }
+                } else if (id === "transcriptFile") {
+                    if (!el.files[0]) {
+                        errorEl.textContent = "กรุณาใส่รูปผลการศึกษา (ไฟล์ PDF)";
+                        valid = false;
+                    } else if (el.files[0].type !== "application/pdf") {
+                        errorEl.textContent = "กรุณาแนบไฟล์ PDF ที่ถูกต้อง";
+                        valid = false;
+                    }
+                } else if (id === "email") {
+                    if (el.value.trim() === "") {
+                        errorEl.textContent = "กรุณาใส่อีเมล";
+                        valid = false;
+                    } else if (!isValidEmail(el.value.trim())) {
+                        errorEl.textContent = "กรุณากรอกอีเมลให้ถูกต้อง";
+                        valid = false;
+                    }
+                }
+            });
+
+            if (valid) {
+                // ถ้าข้อมูลถูกต้อง ให้ submit ฟอร์มตามปกติ
+                form.submit();
+            }
+        });
+    </script>
+</body>
+
+</html>

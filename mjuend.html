@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>แจ้งผลการส่งคำร้อง</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+        body {
+            font-family: "Prompt", sans-serif;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .notification-box {
+            background-color: #ffffff;
+            border-left: 6px solid #4CAF50;
+            padding: 24px 32px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .notification-box h2 {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .notification-box p {
+            font-size: 18px;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-back {
+            margin-top: 24px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #388E3C;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="notification-box">
+        <h2> ส่งคำร้องสำเร็จ</h2>
+        <p>
+            คำร้องจะถูกส่งให้เจ้าหน้าที่และจะส่งผลการยื่นคำร้องผ่านทาง Email<br>
+            (ระยะเวลาทำการไม่เกิน <strong>7–14 วัน</strong>)
+        </p>
+        <a href="mju.html" class="btn-back">กลับหน้าหลัก</a>
+    </div>
+
+</body>
+
+</html>
